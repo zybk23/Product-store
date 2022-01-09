@@ -65,6 +65,9 @@ const StyledLayoutContainer = styled.div`
   @media (max-width: 686px) {
     padding: 0 20px;
   }
+  @media (max-width: 386px) {
+    padding: 0 10px;
+  }
 `;
 
 const StyledLayoutTopBarContainer = styled.div`
@@ -88,6 +91,9 @@ const StyledInfoProductName = styled.p`
   color: #484848;
   @media (max-width: 468px) {
     font-size: 20px;
+  }
+  @media (max-width: 386px) {
+    font-size: 16px;
   }
 `;
 

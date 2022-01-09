@@ -21,7 +21,19 @@ const AppWrapper = () => {
 test("Search products after enter more than two characters", () => {
   const { getByTestId, getAllByTestId } = render(<AppWrapper />);
   const searchInput = getByTestId("searchInput");
-  expect(searchInput.value).toBe("");
+
+  fireEvent.change(searchInput, {
+    target: {
+      value: "hu",
+    },
+  });
+  fireEvent.keyPress(searchInput, {
+    key: "Enter",
+    code: "Enter",
+    charCode: 13,
+  });
+  const productNamesFirstFilter = getAllByTestId("product-name");
+  expect(productNamesFirstFilter).toHaveLength(12);
   fireEvent.change(searchInput, {
     target: {
       value: "hua",
@@ -33,11 +45,11 @@ test("Search products after enter more than two characters", () => {
     code: "Enter",
     charCode: 13,
   });
-  const productNames = getAllByTestId("product-name");
-
-  productNames.forEach((x) => {
+  const productNamesSecondFilter = getAllByTestId("product-name");
+  productNamesSecondFilter.forEach((x) => {
     expect(x.textContent.toLowerCase().includes("hua")).toBeTruthy();
   });
+  expect(productNamesSecondFilter).toHaveLength(8);
 });
 
 test("Searched text should be text that searched by user", () => {

@@ -2,31 +2,23 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import styled from "@emotion/styled";
 import { setSearchValue } from "../../store/searchStore";
+import SearchIcon from "../../assets/images/search.png";
 
 const Search = () => {
   const dispatch = useDispatch();
 
-  const [search, setSearch] = useState("");
-
   const { searchValue } = useSelector((state) => state.searchSlice);
   const handleChangeSearchValue = (e) => {
-    // dispatch(setSearchValue(e.target.value));
-    setSearch(e.target.value);
-  };
-  const handleEnterSearch = (e) => {
-    if (e.key === "Enter") {
-      dispatch(setSearchValue(search));
-    }
+    dispatch(setSearchValue(e.target.value));
   };
 
   return (
     <StyledSearchContainer>
-      <img src={require("../../assets/images/search.png")} alt="" />
+      <img src={SearchIcon} alt="" />
       <StyledSearchInput
         data-testid="searchInput"
-        value={search}
+        value={searchValue}
         onChange={handleChangeSearchValue}
-        onKeyPress={handleEnterSearch}
         placeholder="25 milyon'dan fazla ürün içerisinde ara"
       />
     </StyledSearchContainer>

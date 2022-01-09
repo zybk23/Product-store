@@ -25,9 +25,6 @@ const Cart = () => {
   modifiedCartProducts = modifiedCartProducts.sort(
     (a, b) => moment(b.addedTime).unix() - moment(a.addedTime).unix()
   );
-  const handleChangeIsCartContentOpen = () => {
-    setIsCartContentOpen(!isCartContentOpen);
-  };
 
   const handleRemoveProductFromCart = (id) => {
     dispatch(setRemoveProductFromCart(id));
@@ -38,12 +35,20 @@ const Cart = () => {
     open();
   };
 
+  const handleShowCartContent = () => {
+    setIsCartContentOpen(true);
+  };
+
+  const handleHideCartContent = () => {
+    setIsCartContentOpen(false);
+  };
+
   return (
     <>
       <StyledCartContainer
         borderbottom={isCartContentOpen && "none"}
-        data-testid="cart"
-        onClick={handleChangeIsCartContentOpen}
+        onMouseEnter={handleShowCartContent}
+        onMouseLeave={handleHideCartContent}
       >
         <StyledCartText>Sepetim</StyledCartText>
         <StyledProductCount data-testid="cartProductCount">
@@ -52,7 +57,10 @@ const Cart = () => {
       </StyledCartContainer>
 
       {isCartContentOpen && (
-        <CartContentContainer>
+        <CartContentContainer
+          onMouseEnter={handleShowCartContent}
+          onMouseLeave={handleHideCartContent}
+        >
           {modifiedCartProducts.length > 0 ? (
             modifiedCartProducts.map((product) => (
               <CartItemContainer key={product.id}>
@@ -144,6 +152,9 @@ const CartContentContainer = styled.div`
   }
   @media (max-width: 686px) {
     right: 20px;
+  }
+  @media (max-width: 386px) {
+    width: 300px;
   }
 `;
 

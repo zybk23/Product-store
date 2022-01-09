@@ -161,15 +161,17 @@ const ProductCard = () => {
               );
             })}
           </StyledProductsContainer>
-          <Pagination
-            productData={filteredProductData}
-            currentPage={currentPage}
-            setCurrentPage={setCurrentPage}
-            pages={pages}
-          />
+          {filteredProductData.length > 12 && (
+            <Pagination
+              productData={filteredProductData}
+              currentPage={currentPage}
+              setCurrentPage={setCurrentPage}
+              pages={pages}
+            />
+          )}
         </StyledContentContainer>
       ) : (
-        <Alert text="Seçtiğiniz filtrelere ait ürün bulunmamaktadır" />
+        <Alert text="Seçtiğiniz filtrelere ait ürün bulunmamaktadır." />
       )}
     </React.Fragment>
   );
