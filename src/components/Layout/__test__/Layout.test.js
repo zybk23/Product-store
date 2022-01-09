@@ -27,11 +27,6 @@ test("Search products after enter more than two characters", () => {
       value: "hu",
     },
   });
-  fireEvent.keyPress(searchInput, {
-    key: "Enter",
-    code: "Enter",
-    charCode: 13,
-  });
   const productNamesFirstFilter = getAllByTestId("product-name");
   expect(productNamesFirstFilter).toHaveLength(12);
   fireEvent.change(searchInput, {
@@ -40,16 +35,16 @@ test("Search products after enter more than two characters", () => {
     },
   });
   expect(searchInput.value).toBe("hua");
-  fireEvent.keyPress(searchInput, {
-    key: "Enter",
-    code: "Enter",
-    charCode: 13,
-  });
   const productNamesSecondFilter = getAllByTestId("product-name");
   productNamesSecondFilter.forEach((x) => {
     expect(x.textContent.toLowerCase().includes("hua")).toBeTruthy();
   });
-  expect(productNamesSecondFilter).toHaveLength(8);
+  expect(productNamesSecondFilter).toHaveLength(9);
+  fireEvent.change(searchInput, {
+    target: {
+      value: "",
+    },
+  });
 });
 
 test("Searched text should be text that searched by user", () => {
@@ -63,21 +58,11 @@ test("Searched text should be text that searched by user", () => {
     },
   });
   expect(searchInput.value).toBe("hua");
-  fireEvent.keyPress(searchInput, {
-    key: "Enter",
-    code: "Enter",
-    charCode: 13,
-  });
   expect(searchedTextEL.textContent).toBe("hua");
   fireEvent.change(searchInput, {
     target: {
       value: "",
     },
-  });
-  fireEvent.keyPress(searchInput, {
-    key: "Enter",
-    code: "Enter",
-    charCode: 13,
   });
   expect(searchedTextEL.textContent).toBe("");
 });

@@ -119,13 +119,14 @@ const StyledSelectBox = styled.select`
   justify-content: center;
   border: 1px solid #b4b4bb;
   border-radius: 4px;
-  padding: 4px;
+  padding: 2px;
   outline: none;
 `;
 const StyledOption = styled.option`
   width: 274px;
   height: 152px;
   background-color: #484848;
+  color: #ffffff;
 `;
 
 const StyledLayoutContentContainer = styled.div`
