@@ -1,10 +1,10 @@
 import React from "react";
-import App from "../../../App";
+import App from "../../App";
 import { render, fireEvent, screen } from "@testing-library/react";
 import { Provider } from "react-redux";
 import "@testing-library/jest-dom";
 import { configureStore } from "@reduxjs/toolkit";
-import createReducer from "../../../store/rootReducer";
+import createReducer from "../../store/rootReducer";
 
 const store = configureStore({
   reducer: createReducer,
