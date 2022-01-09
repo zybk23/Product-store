@@ -86,6 +86,9 @@ const StyledInfoProductName = styled.p`
   font-size: 28px;
   line-height: 100%;
   color: #484848;
+  @media (max-width: 468px) {
+    font-size: 20px;
+  }
 `;
 
 const StyledInfoKeyContainer = styled(StyledTopBarInfoContainer)`
